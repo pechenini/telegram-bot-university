@@ -13,3 +13,10 @@ if (!function_exists("commands")) {
         return "App\\Botman\\Commands\\$handler";
     }
 }
+
+if (!function_exists("menu")) {
+    function menu($menu)
+    {
+        return app('menus')->get($menu)->render();
+    }
+}

@@ -10,4 +10,10 @@ class MainCommand
     {
         $bot->reply("Привет!");
     }
+
+    public function kb(BotMan $bot)
+    {
+        $keyboard = menu('main');
+        $bot->reply("Hey", [] + $keyboard);
+    }
 }
