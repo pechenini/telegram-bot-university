@@ -2,18 +2,25 @@
 
 namespace App\Botman\Commands;
 
+use App\Models\Menu;
+use App\Services\MenuResolver;
 use BotMan\BotMan\BotMan;
 
 class MainCommand
 {
-    public function index(BotMan $bot)
+    /**
+     * @var MenuResolver
+     */
+    private $resolver;
+
+    public function __construct(MenuResolver $resolver)
     {
-        $bot->reply("Привет!");
+        $this->resolver = $resolver;
     }
 
-    public function kb(BotMan $bot)
+    public function index(BotMan $bot)
     {
-        $keyboard = menu('main');
-        $bot->reply("Hey", [] + $keyboard);
+        $response = $this->resolver->resolve($bot->getMessage()->getText());
+        $bot->reply($response->message, $response->menu->render());
     }
 }

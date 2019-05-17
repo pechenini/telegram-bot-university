@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use App\Botman\Menus\MainMenu;
+use App\Botman\Menus\Menu;
 use App\Botman\Support\MenuFactory;
 use Illuminate\Support\ServiceProvider;
 
 class TelegramMenuProvider extends ServiceProvider
 {
     private $menus = [
-        'main' => MainMenu::class,
+        'main' => Menu::class,
     ];
 
     /**

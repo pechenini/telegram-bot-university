@@ -7,7 +7,7 @@ use Closure;
 
 abstract class BaseMenu
 {
-    protected $rows;
+    protected $rows = [];
 
     private $keyboard;
 
@@ -41,7 +41,7 @@ abstract class BaseMenu
         return $this;
     }
 
-    protected function addRow(Closure $closure)
+    public function addRow(Closure $closure)
     {
         $row = $this->rows[] = new MenuRow;
 
@@ -50,8 +50,6 @@ abstract class BaseMenu
 
     public function render()
     {
-        $this->run();
-
         foreach ($this->rows as $row) {
             $this->keyboard->addRow(...$row->toArray());
         }
